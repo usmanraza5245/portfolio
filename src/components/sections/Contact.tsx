@@ -53,7 +53,7 @@ export default function Contact({ profile }: ContactProps) {
                   <Github size={15} />
                 </div>
                 <span className="text-muted group-hover:text-white transition-colors hover-underline">
-                  github.com/usmanraza5245
+                  {profile.github}
                 </span>
               </a>
 
@@ -67,7 +67,7 @@ export default function Contact({ profile }: ContactProps) {
                   <Linkedin size={15} />
                 </div>
                 <span className="text-muted group-hover:text-white transition-colors hover-underline">
-                  linkedin.com/in/usmanraza
+                  {profile.linkedin}
                 </span>
               </a>
 
