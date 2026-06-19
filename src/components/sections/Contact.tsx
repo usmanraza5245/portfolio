@@ -1,11 +1,12 @@
-'use client'
+"use client";
 
-import { Mail, Github, Linkedin, MapPin } from 'lucide-react'
-import { portfolioData } from '@/lib/data'
+import { Mail, Github, Linkedin, MapPin } from "lucide-react";
+import { Profile } from "@/types";
 
-export default function Contact() {
-  const { personal } = portfolioData
-
+type ContactProps = {
+  profile: Profile;
+};
+export default function Contact({ profile }: ContactProps) {
   return (
     <section id="contact" className="py-28 border-t border-border">
       <div className="max-w-6xl mx-auto px-6">
@@ -24,26 +25,26 @@ export default function Contact() {
           {/* Left: CTA */}
           <div>
             <p className="text-muted text-base leading-relaxed mb-8">
-              I'm currently available for freelance projects and contract work. 
-              Whether you need a full-stack web app, an AI integration, or a quick 
-              MVP — reach out and let's talk.
+              I'm currently available for freelance projects and contract work.
+              Whether you need a full-stack web app, an AI integration, or a
+              quick MVP — reach out and let's talk.
             </p>
 
             <div className="space-y-4">
               <a
-                href={`mailto:${personal.email}`}
+                href={`mailto:${profile.email}`}
                 className="flex items-center gap-3 text-sm group"
               >
                 <div className="w-9 h-9 rounded-full border border-border flex items-center justify-center text-muted group-hover:border-accent group-hover:text-accent transition-all">
                   <Mail size={15} />
                 </div>
                 <span className="text-muted group-hover:text-white transition-colors hover-underline">
-                  {personal.email}
+                  {profile.email}
                 </span>
               </a>
 
               <a
-                href={personal.github}
+                href={profile.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 text-sm group"
@@ -57,7 +58,7 @@ export default function Contact() {
               </a>
 
               <a
-                href={personal.linkedin}
+                href={profile.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 text-sm group"
@@ -74,7 +75,7 @@ export default function Contact() {
                 <div className="w-9 h-9 rounded-full border border-border flex items-center justify-center text-muted">
                   <MapPin size={15} />
                 </div>
-                <span className="text-muted">{personal.location}</span>
+                <span className="text-muted">{profile.location}</span>
               </div>
             </div>
           </div>
@@ -85,17 +86,21 @@ export default function Contact() {
               Open to opportunities
             </h3>
             <p className="text-muted text-sm mb-6">
-              Available for freelance, part-time contracts, and interesting full-time remote roles.
+              Available for freelance, part-time contracts, and interesting
+              full-time remote roles.
             </p>
 
             <div className="space-y-3 mb-8">
               {[
-                'Full-stack web development',
-                'AI / LLM integrations',
-                'React / Next.js consulting',
-                'MVP development',
+                "Full-stack web development",
+                "AI / LLM integrations",
+                "React / Next.js consulting",
+                "MVP development",
               ].map((item) => (
-                <div key={item} className="flex items-center gap-2 text-sm text-muted">
+                <div
+                  key={item}
+                  className="flex items-center gap-2 text-sm text-muted"
+                >
                   <span className="text-accent">✓</span>
                   {item}
                 </div>
@@ -103,7 +108,7 @@ export default function Contact() {
             </div>
 
             <a
-              href={`mailto:${personal.email}`}
+              href={`mailto:${profile.email}`}
               className="w-full flex items-center justify-center gap-2 bg-accent text-background font-bold py-3 rounded-full text-sm hover:bg-accent-dim transition-all hover:scale-105"
             >
               <Mail size={14} />
@@ -113,5 +118,5 @@ export default function Contact() {
         </div>
       </div>
     </section>
-  )
+  );
 }

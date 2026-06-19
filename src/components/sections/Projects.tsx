@@ -1,12 +1,14 @@
-'use client'
+"use client";
 
-import { ExternalLink, Github, Star } from 'lucide-react'
-import { portfolioData } from '@/lib/data'
+import { ExternalLink, Github, Star } from "lucide-react";
+import { Project } from "@/types";
 
-export default function Projects() {
-  const { projects } = portfolioData
-  const featured = projects.filter((p) => p.featured)
-  const others = projects.filter((p) => !p.featured)
+type ProjectProps = {
+  projects: Array<Project>;
+};
+export default function Projects({ projects }: ProjectProps) {
+  const featured = projects.filter((p) => p.featured);
+  const others = projects.filter((p) => !p.featured);
 
   return (
     <section id="projects" className="py-28 border-t border-border">
@@ -32,9 +34,13 @@ export default function Projects() {
               <div className="flex items-start justify-between mb-4">
                 <div className="flex items-center gap-2">
                   <Star size={13} className="text-accent" />
-                  <span className="font-mono text-xs text-accent">Featured</span>
+                  <span className="font-mono text-xs text-accent">
+                    Featured
+                  </span>
                 </div>
-                <span className="font-mono text-xs text-subtle">{project.year}</span>
+                <span className="font-mono text-xs text-subtle">
+                  {project.year}
+                </span>
               </div>
 
               <h3 className="font-display font-bold text-xl text-white mb-3 group-hover:text-accent transition-colors">
@@ -46,7 +52,10 @@ export default function Projects() {
 
               <div className="flex flex-wrap gap-2 mb-5">
                 {project.tags.map((tag) => (
-                  <span key={tag} className="font-mono text-xs text-muted border border-border px-2 py-0.5 rounded-full">
+                  <span
+                    key={tag}
+                    className="font-mono text-xs text-muted border border-border px-2 py-0.5 rounded-full"
+                  >
                     {tag}
                   </span>
                 ))}
@@ -91,12 +100,19 @@ export default function Projects() {
                 <h3 className="font-display font-bold text-base text-white group-hover:text-accent transition-colors">
                   {project.title}
                 </h3>
-                <span className="font-mono text-xs text-subtle">{project.year}</span>
+                <span className="font-mono text-xs text-subtle">
+                  {project.year}
+                </span>
               </div>
-              <p className="text-muted text-sm leading-relaxed mb-4">{project.description}</p>
+              <p className="text-muted text-sm leading-relaxed mb-4">
+                {project.description}
+              </p>
               <div className="flex flex-wrap gap-1.5">
                 {project.tags.map((tag) => (
-                  <span key={tag} className="font-mono text-xs text-subtle border border-border px-2 py-0.5 rounded-full">
+                  <span
+                    key={tag}
+                    className="font-mono text-xs text-subtle border border-border px-2 py-0.5 rounded-full"
+                  >
                     {tag}
                   </span>
                 ))}
@@ -106,5 +122,5 @@ export default function Projects() {
         </div>
       </div>
     </section>
-  )
+  );
 }

@@ -1,51 +1,52 @@
-'use client'
+"use client";
 
-import { useEffect, useState } from 'react'
-import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react'
-import { portfolioData } from '@/lib/data'
+import { useEffect, useState } from "react";
+import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
+import { Profile } from "@/types";
 
 const ROLES = [
-  'Full-Stack Developer',
-  'React / Next.js Engineer',
-  'AI Product Builder',
-  'Node.js Developer',
-]
+  "Full-Stack Developer",
+  "React / Next.js Engineer",
+  "AI Product Builder",
+  "Node.js Developer",
+];
 
-export default function Hero() {
-  const [roleIndex, setRoleIndex] = useState(0)
-  const [displayed, setDisplayed] = useState('')
-  const [isDeleting, setIsDeleting] = useState(false)
-  const [charIndex, setCharIndex] = useState(0)
+type HeroProps = {
+  profile: Profile;
+};
+export default function Hero({ profile }: HeroProps) {
+  const [roleIndex, setRoleIndex] = useState(0);
+  const [displayed, setDisplayed] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [charIndex, setCharIndex] = useState(0);
 
   useEffect(() => {
-    const current = ROLES[roleIndex]
-    let timeout: NodeJS.Timeout
+    const current = ROLES[roleIndex];
+    let timeout: NodeJS.Timeout;
 
     if (!isDeleting) {
       if (charIndex < current.length) {
         timeout = setTimeout(() => {
-          setDisplayed(current.slice(0, charIndex + 1))
-          setCharIndex(charIndex + 1)
-        }, 60)
+          setDisplayed(current.slice(0, charIndex + 1));
+          setCharIndex(charIndex + 1);
+        }, 60);
       } else {
-        timeout = setTimeout(() => setIsDeleting(true), 2000)
+        timeout = setTimeout(() => setIsDeleting(true), 2000);
       }
     } else {
       if (charIndex > 0) {
         timeout = setTimeout(() => {
-          setDisplayed(current.slice(0, charIndex - 1))
-          setCharIndex(charIndex - 1)
-        }, 30)
+          setDisplayed(current.slice(0, charIndex - 1));
+          setCharIndex(charIndex - 1);
+        }, 30);
       } else {
-        setIsDeleting(false)
-        setRoleIndex((prev) => (prev + 1) % ROLES.length)
+        setIsDeleting(false);
+        setRoleIndex((prev) => (prev + 1) % ROLES.length);
       }
     }
 
-    return () => clearTimeout(timeout)
-  }, [charIndex, isDeleting, roleIndex])
-
-  const { personal } = portfolioData
+    return () => clearTimeout(timeout);
+  }, [charIndex, isDeleting, roleIndex]);
 
   return (
     <section className="relative min-h-screen flex flex-col justify-center grid-bg overflow-hidden">
@@ -53,7 +54,8 @@ export default function Hero() {
       <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none"
         style={{
-          background: 'radial-gradient(circle, rgba(232,255,71,0.04) 0%, transparent 70%)',
+          background:
+            "radial-gradient(circle, rgba(232,255,71,0.04) 0%, transparent 70%)",
         }}
       />
 
@@ -65,9 +67,12 @@ export default function Hero() {
         </div>
 
         {/* Main heading */}
-        <h1 className="font-display font-extrabold leading-[0.95] mb-6" style={{ fontSize: 'clamp(3rem, 8vw, 7rem)' }}>
+        <h1
+          className="font-display font-extrabold leading-[0.95] mb-6"
+          style={{ fontSize: "clamp(3rem, 8vw, 7rem)" }}
+        >
           <span className="block text-white">Hi, I'm</span>
-          <span className="block text-gradient">{personal.name}</span>
+          <span className="block text-gradient">{profile.name}</span>
         </h1>
 
         {/* Typewriter role */}
@@ -78,8 +83,11 @@ export default function Hero() {
         </div>
 
         {/* Tagline */}
-        <p className="text-muted text-lg max-w-lg mb-10 leading-relaxed" style={{ fontFamily: 'var(--font-display)' }}>
-          {personal.tagline}
+        <p
+          className="text-muted text-lg max-w-lg mb-10 leading-relaxed"
+          style={{ fontFamily: "var(--font-display)" }}
+        >
+          {profile.tagline}
         </p>
 
         {/* CTA row */}
@@ -91,7 +99,7 @@ export default function Hero() {
             View my work
           </a>
           <a
-            href={`mailto:${personal.email}`}
+            href={`mailto:${profile.email}`}
             className="flex items-center gap-2 border border-border text-sm px-6 py-3 rounded-full hover:border-border-light hover:text-white text-muted transition-all"
           >
             Get in touch
@@ -100,7 +108,7 @@ export default function Hero() {
           {/* Social icons */}
           <div className="flex items-center gap-3 ml-2">
             <a
-              href={personal.github}
+              href={profile.github}
               target="_blank"
               rel="noopener noreferrer"
               className="w-9 h-9 rounded-full border border-border flex items-center justify-center text-muted hover:text-white hover:border-border-light transition-all"
@@ -109,7 +117,7 @@ export default function Hero() {
               <Github size={15} />
             </a>
             <a
-              href={personal.linkedin}
+              href={profile.linkedin}
               target="_blank"
               rel="noopener noreferrer"
               className="w-9 h-9 rounded-full border border-border flex items-center justify-center text-muted hover:text-white hover:border-border-light transition-all"
@@ -118,7 +126,7 @@ export default function Hero() {
               <Linkedin size={15} />
             </a>
             <a
-              href={`mailto:${personal.email}`}
+              href={`mailto:${profile.email}`}
               className="w-9 h-9 rounded-full border border-border flex items-center justify-center text-muted hover:text-white hover:border-border-light transition-all"
               aria-label="Email"
             >
@@ -130,12 +138,14 @@ export default function Hero() {
         {/* Stats row */}
         <div className="flex flex-wrap gap-10">
           {[
-            { value: '5+', label: 'Years experience' },
-            { value: '20+', label: 'Projects shipped' },
-            { value: '100%', label: 'Remote ready' },
+            { value: "5+", label: "Years experience" },
+            { value: "20+", label: "Projects shipped" },
+            { value: "100%", label: "Remote ready" },
           ].map((stat) => (
             <div key={stat.label}>
-              <div className="font-display font-extrabold text-3xl text-white mb-0.5">{stat.value}</div>
+              <div className="font-display font-extrabold text-3xl text-white mb-0.5">
+                {stat.value}
+              </div>
               <div className="text-xs text-muted font-mono">{stat.label}</div>
             </div>
           ))}
@@ -151,5 +161,5 @@ export default function Hero() {
         <ArrowDown size={16} className="animate-bounce" />
       </a>
     </section>
-  )
+  );
 }

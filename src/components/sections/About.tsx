@@ -1,10 +1,11 @@
-'use client'
+"use client";
 
-import { portfolioData } from '@/lib/data'
+import { Profile } from "@/types";
 
-export default function About() {
-  const { personal } = portfolioData
-
+type AboutProps = {
+  profile: Profile;
+};
+export default function About({ profile }: AboutProps) {
   return (
     <section id="about" className="py-28 border-t border-border">
       <div className="max-w-6xl mx-auto px-6">
@@ -20,16 +21,17 @@ export default function About() {
               <span className="text-gradient">experiences.</span>
             </h2>
             <p className="text-muted leading-relaxed mb-6 text-base">
-              {personal.bio}
+              {profile.bio}
             </p>
             <p className="text-muted leading-relaxed text-base">
-              When I'm not coding, I'm exploring new AI tools, contributing to open source, 
-              or experimenting with new ideas that could become the next SaaS product.
+              When I'm not coding, I'm exploring new AI tools, contributing to
+              open source, or experimenting with new ideas that could become the
+              next SaaS product.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
               <a
-                href={personal.github}
+                href={profile.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-mono text-xs text-accent border border-border px-4 py-2 rounded-full hover:border-accent transition-colors"
@@ -44,14 +46,25 @@ export default function About() {
             <div className="bg-surface border border-border rounded-2xl p-8">
               <div className="space-y-5">
                 {[
-                  { label: 'Location', value: personal.location },
-                  { label: 'Availability', value: 'Open to freelance & contracts' },
-                  { label: 'Focus', value: 'Full-stack & AI-powered products' },
-                  { label: 'Stack', value: 'React · Next.js · Node.js · TypeScript' },
-                  { label: 'Experience', value: '5+ years professional' },
+                  { label: "Location", value: profile.location },
+                  {
+                    label: "Availability",
+                    value: "Open to freelance & contracts",
+                  },
+                  { label: "Focus", value: "Full-stack & AI-powered products" },
+                  {
+                    label: "Stack",
+                    value: "React · Next.js · Node.js · TypeScript",
+                  },
+                  { label: "Experience", value: "5+ years professional" },
                 ].map((item) => (
-                  <div key={item.label} className="flex items-start gap-4 pb-5 border-b border-border last:border-0 last:pb-0">
-                    <span className="font-mono text-xs text-muted min-w-[90px] pt-0.5">{item.label}</span>
+                  <div
+                    key={item.label}
+                    className="flex items-start gap-4 pb-5 border-b border-border last:border-0 last:pb-0"
+                  >
+                    <span className="font-mono text-xs text-muted min-w-[90px] pt-0.5">
+                      {item.label}
+                    </span>
                     <span className="text-sm text-white">{item.value}</span>
                   </div>
                 ))}
@@ -61,11 +74,11 @@ export default function About() {
             {/* Decorative corner accent */}
             <div
               className="absolute -top-3 -right-3 w-16 h-16 rounded-xl border border-accent/20 pointer-events-none"
-              style={{ background: 'rgba(232,255,71,0.03)' }}
+              style={{ background: "rgba(232,255,71,0.03)" }}
             />
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }

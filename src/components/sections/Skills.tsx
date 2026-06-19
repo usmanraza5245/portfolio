@@ -1,10 +1,11 @@
-'use client'
+"use client";
 
-import { portfolioData } from '@/lib/data'
+import { Skill } from "@/types";
 
-export default function Skills() {
-  const { skills } = portfolioData
-
+type SkillProps = {
+  skills: Array<Skill>;
+};
+export default function Skills({ skills }: SkillProps) {
   return (
     <section id="skills" className="py-28 border-t border-border">
       <div className="max-w-6xl mx-auto px-6">
@@ -27,9 +28,11 @@ export default function Skills() {
             >
               <div className="flex items-center gap-3 mb-5">
                 <span className="font-mono text-xs text-accent">
-                  {String(i + 1).padStart(2, '0')}
+                  {String(i + 1).padStart(2, "0")}
                 </span>
-                <h3 className="font-display font-bold text-white text-sm">{group.category}</h3>
+                <h3 className="font-display font-bold text-white text-sm">
+                  {group.category}
+                </h3>
               </div>
               <div className="flex flex-wrap gap-2">
                 {group.items.map((skill) => (
@@ -46,5 +49,5 @@ export default function Skills() {
         </div>
       </div>
     </section>
-  )
+  );
 }

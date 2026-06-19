@@ -1,11 +1,12 @@
-'use client'
+"use client";
 
-import { Award } from 'lucide-react'
-import { portfolioData } from '@/lib/data'
+import { Award } from "lucide-react";
+import { Certification } from "@/types";
 
-export default function Certifications() {
-  const { certifications } = portfolioData
-
+type CertificationProps = {
+  certifications: Array<Certification>;
+};
+export default function Certifications({ certifications }: CertificationProps) {
   return (
     <section id="certifications" className="py-16 border-t border-border">
       <div className="max-w-6xl mx-auto px-6">
@@ -34,5 +35,5 @@ export default function Certifications() {
         </div>
       </div>
     </section>
-  )
+  );
 }
