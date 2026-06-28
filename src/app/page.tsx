@@ -16,6 +16,10 @@ import {
   SKILLS_QUERY,
 } from "@/lib/sanity/queries";
 
+// Re-fetch from Sanity at most once every 60s (ISR), so published
+// changes appear on the live site without a rebuild.
+export const revalidate = 60;
+
 export default async function Home() {
   const [profile, skills, projects, experience, certifications] =
     await Promise.all([
